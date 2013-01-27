@@ -1,0 +1,11 @@
+<!--
+    Context configuration file for the Tomcat Administration Web App
+-->
+
+
+<Context path="${app.context}"
+         docBase="${app.docBase}"
+         reloadable="${app.reloadable}" debug="99"
+         antiResourceLocking="false" antiJARLocking="false"
+         unpackWAR="true" crossContext="true">
+</Context>

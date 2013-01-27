@@ -1,0 +1,11 @@
+<!--
+    Context configuration file for the Tomcat Administration Web App
+-->
+
+
+<Context path="/cars"
+         docBase="W:\WorkEnv\src\cars/src/main/webapp"
+         reloadable="true" debug="99"
+         antiResourceLocking="false" antiJARLocking="false"
+         unpackWAR="true" crossContext="true">
+</Context>

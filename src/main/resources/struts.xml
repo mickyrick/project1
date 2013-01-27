@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+    "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+	<package name="cars" extends="struts-default">
+		<interceptors>
+
+		<interceptor-stack name="carsHome">
+			<interceptor-ref name="scope">
+				<param name="key">carsHome_</param>
+				<param name="session">searchTags,searchType,section</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors> 
+
+		<global-results>
+			<result name="info">/jsp/info.jsp</result>
+			<result name="logout" type="redirectAction">index</result>
+		</global-results>
+
+		<action name="index" class="homeAction">
+			<interceptor-ref name="carsHome" />
+			<interceptor-ref name="basicStack" />
+			<result>/jsp/home.jsp</result>
+			<result name="input">/jsp/home.jsp</result>
+			<result name="search">/jsp/home.jsp</result>
+		</action>
+
+	</package>
+</struts>

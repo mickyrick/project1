@@ -1,0 +1,43 @@
+.clear {clear: both; height: 0; line-height: 0; font-size: 0;}
+
+.btn-tiny {
+  padding: 1px 0px 1px 0px;
+  margin-bottom: 2px;
+  font-size: 8px;
+  line-height: 12px;
+}
+.btn-tiny .icon {
+  margin-top: -1px;
+}
+
+body 
+{
+  font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+  color: #4f6b72;
+  background: url(../img/prvniHorni.png) repeat-x;
+  padding-top: 5px;
+  background-color: #F0F6FF;
+  
+}
+
+
+
+.TabBox {width: 940px;margin: 10px 0 0 0;}
+.TabBox460 {width: 460px;margin: 10px 0 0 0;}
+.TabBox570 {width: 570px;margin: 10px 0 0 0;}
+.TabBox h2 {padding: 0 0 0 11px;margin: 0;line-height: 30px;background: url(../img/brownTab.png) left top no-repeat;font-size: 14px;color: #7E6A38;}
+.TabBox570 h2 {padding: 0 0 0 11px;margin: 0;line-height: 30px;background: url(../img/brownTab570.png) left top no-repeat;font-size: 14px;color: #7E6A38;}
+.TabBox460 h2 {padding: 0 0 0 11px;margin: 0;line-height: 30px;background: url(../img/brownTab460.png) left top no-repeat;font-size: 14px;color: #7E6A38;}
+.TabBoxIn {background: #F5F3E9;border: 1px solid #EAE5D1;border-top: 0;padding: 5px 10px 10px 10px;}
+.TabBoxIn .BgColor {white-space:nowrap;background: #D9D1AF;padding: 0 10px;float: left;margin: 3px 1px 3px 0;font-size: 11px;line-height: 21px;height: 21px;color: #554620;}
+.TabBoxIn .BgColor strong {font-weight: normal;color: #FFF;background: url(../img/price_right.png) right center no-repeat;padding: 0 30px 0 0;}
+.TabBoxIn .BgColor strong span {background: url(../img/price_left.png) left center no-repeat;line-height: 15px;padding: 0 0 0 4px;margin: 0 0 0 2px;}
+
+p.smallGrey {
+  font-size: 12px;
+  color: #888888;
+}
+
+
+/** 245, 243, 233
+234, 229, 209 **/

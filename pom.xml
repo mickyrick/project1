@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.microed.cars</groupId>
+	<artifactId>cars</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>cars</name>
+	<url>http://www.microed.com</url>
+	<description>cars</description>
+
+	<properties>
+		<tomcat.home>${env.CATALINA_HOME}</tomcat.home>
+		<database.username>SYSDBA</database.username>
+		<cargo.servlet.port>${env.cargo_servlet_port}</cargo.servlet.port>
+		<cargo.debug.port>${env.cargo_debug_port}</cargo.debug.port>
+		<cars.host>localhost:</cars.host>
+		<cars.protocol>http://</cars.protocol>
+	</properties>
+
+	<dependencies>
+
+		<!--  Struts 2 -->
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-core</artifactId>
+			<version>2.1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-sitemesh-plugin</artifactId>
+			<version>2.1.8.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.struts</groupId>
+			<artifactId>struts2-spring-plugin</artifactId>
+			<version>2.1.8.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- MySQL for DB connectivity -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.0.5</version>
+		</dependency>
+
+		<!-- Ibatis -->
+		<dependency>
+			<groupId>org.apache.ibatis</groupId>
+			<artifactId>ibatis-sqlmap</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>ROOT</finalName>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+						<resources>
+							<resource>
+								<directory>src/main/resources</directory>
+								<filtering>false</filtering>
+								<includes>
+									<include>**/*.properties</include>
+								</includes>
+							</resource>
+						</resources>
+				</configuration>
+			</plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>2.1-beta-1</version>
+          <configuration>
+            <webResources>
+              <resource>
+                <directory>${basedir}/src/servers</directory>
+                <targetPath>META-INF</targetPath>
+                <filtering>true</filtering>
+              </resource>
+            </webResources>
+          </configuration>
+        </plugin>
+
+			<plugin>
+			<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.0.6</version>
+				<executions>
+				</executions>
+				<configuration>
+					<container>
+					<containerId>tomcat6x</containerId>
+						<home>${tomcat.home}</home>
+						<output>../../logs/tomcat.log.txt</output><!-- maps to \%WORKROOT%\logs (workenv or homeenv) -->
+					</container>
+					<configuration>
+						<type>existing</type>
+						<home>${tomcat.home}</home>
+						<properties>
+							<cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+							<cargo.jvmargs>-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,address=${cargo.debug.port},suspend=n,server=y -Xms256m -Xmx512m -XX:MaxPermSize=128m</cargo.jvmargs>
+					</properties>
+					</configuration>
+				    <deployer>
+              <deployables>
+                <deployable>
+                  <groupId>${groupId}</groupId>
+                  <artifactId>${artifactId}</artifactId>
+                  <type>war</type>
+                  <location>${basedir}/src/main/webapp</location>
+                  <pingURL>${cars.protocol}${cars.host}${cargo.servlet.port}/${artifactId}</pingURL>
+                  <pingTimeout>120000</pingTimeout>
+                  <properties>
+                    <context>cars</context>
+                  </properties>
+                </deployable>
+              </deployables>
+            </deployer>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<profiles>
+
+    <profile>
+      <id>INPLACE</id>
+      <activation>
+        <property>
+          <name>env</name>
+          <value>dev</value>
+        </property>
+        <file>
+          <!--<exists>inplace.webapp</exists>-->
+        </file>
+      </activation>
+      <properties>
+        <server.wait>true</server.wait>
+        <webapp.path>${basedir}/src/main/webapp</webapp.path>
+        <webapp.directory>${basedir}/src/main/webapp</webapp.directory>
+        <app.context>/cars</app.context>
+        <app.docBase>${basedir}/src/main/webapp</app.docBase>
+        <app.reloadable>true</app.reloadable>
+      </properties>
+    </profile>
+
+
+
+
+		<profile>
+			<id>IP-OLD</id>
+
+			<properties>
+				<docBase>docBase="${basedir}/src/main/webapp"</docBase>
+			</properties>
+
+			<build>
+				<plugins>
+					<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<version>1.0.6</version>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<configuration>
+						<configuration>
+							<deployables>
+								<deployable>
+									<location>${basedir}/src/main/webapp</location>
+									<properties>
+										<context>cars</context>
+									</properties>
+								</deployable>
+							</deployables>
+						</configuration>
+					</configuration>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+
+
+	</profiles>
+
+
+</project>

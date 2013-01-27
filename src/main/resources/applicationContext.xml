@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC 
+	"-//SPRING//DTD BEAN//EN" 
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+	
+<beans>
+	<!-- Spring instantiated classes -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
+
+	<!-- Action Classes  -->
+	<bean id="baseCarsAction" class="com.microed.cars.web.BaseCarsAction" singleton="false" >
+			<property name="carsService" ref="carsService"/>
+	</bean>
+
+
+	<bean id="homeAction" class="com.microed.cars.web.HomeAction" singleton="false" parent="baseCarsAction" >
+	</bean>
+
+	<!-- Business Classes -->
+
+	<bean id="carsService" class="com.microed.cars.business.CarsService" singleton="false" >
+		<property name="carsDAO" ref="carsDAO"/>
+	</bean>
+
+
+	<!-- Data Access Classes -->
+
+	<bean id="carsDAO" class="com.microed.cars.dataaccess.CarsDAO" singleton="false" />
+
+	<!-- Utility/Helper Classes -->
+
+
+</beans>
+

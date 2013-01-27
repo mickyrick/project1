@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<properties resource="jdbc.properties"/>
+	<settings
+		useStatementNamespaces="true"
+		lazyLoadingEnabled="false" />
+
+	<transactionManager type="JDBC" >
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="${database.driver}"/>
+			<property name="JDBC.ConnectionURL" value="${database.networkProtocol}//${database.serverName}:${database.portNumber}/${database.databaseName}"/>
+			<property name="JDBC.Username" value="${database.user}"/>
+			<property name="JDBC.Password" value="${database.password}"/>
+			<property name="Pool.MaximumActiveConnections" value="1"/>
+			<property name="Pool.MaximumIdleConnections" value="0"/>
+			<property name="Pool.MaximumWait" value="10000"/>
+		</dataSource>
+	</transactionManager>
+
+	<sqlMap resource="sqlmaps/CarsDAO.xml"/>
+
+
+</sqlMapConfig>
