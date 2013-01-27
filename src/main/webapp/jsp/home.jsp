@@ -3,7 +3,31 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<%@taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 <%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="sx" uri="/struts-dojo-tags" %>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>cars</title>
+	<script type="text/javascript" src="<s:url value='/css3/jquery-1.7.1.min.js'/>"></script>
+	<script type="text/javascript" src="<s:url value='/bootstrap/js/bootstrap.js'/>"></script>
+	<script src="js/jquery.autocomplete.js"></script>   
+ <sx:head />
+</head>
+  <body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+
+<div class="container">
+
+
+</div>
+
+
+
+
 
 <s:form action="index" >
 
@@ -24,6 +48,10 @@
 		
 	</div>
 	
+	My List : <sx:autocompleter list="autoCompleteList" name="myList"/> xyz
+	
+
+        
 <div class="transBlock">
 	<div class="row">
 		<div class="span7 offset1">
@@ -39,3 +67,6 @@
 </div>
 
 </s:form>
+
+</body>
+</html>

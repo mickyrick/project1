@@ -12,7 +12,9 @@
 	<title>cars</title>
 	<script type="text/javascript" src="<s:url value='/css3/jquery-1.7.1.min.js'/>"></script>
 	<script type="text/javascript" src="<s:url value='/bootstrap/js/bootstrap.js'/>"></script>
-    <decorator:head/>
+	<script src="js/jquery.autocomplete.js"></script>   
+ <sx:head />
+     <decorator:head/>
 </head>
   <body data-spy="scroll" data-target=".subnav" data-offset="50">
 <s:include value="/jsp/snip/navbar.jsp" />
