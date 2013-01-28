@@ -15,7 +15,7 @@
 	</bean>
 
 
-	<bean id="homeAction" class="com.microed.cars.web.HomeAction" singleton="false" parent="baseCarsAction" >
+	<bean id="homeAction" class="com.microed.cars.web.Autocompleter" singleton="false" parent="baseCarsAction" >
 	</bean>
 
 	<!-- Business Classes -->
